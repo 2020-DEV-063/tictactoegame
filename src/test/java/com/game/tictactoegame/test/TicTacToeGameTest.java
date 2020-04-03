@@ -1,11 +1,11 @@
 package com.game.tictactoegame.test;
 
+import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.service.TicTacToeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This class is to test the TicTacToeGame class
@@ -67,5 +67,17 @@ class TicTacToeGameTest {
 
         assertEquals(ticTacToeGame.getPlayer1().getMarker(), testBoard[0][0]);
         assertEquals(ticTacToeGame.getPlayer2().getMarker(), testBoard[1][2]);
+    }
+
+    /**
+     * To check if the updateBoard method throws an exception if a player tries to put his marker
+     * on an already occupied position on the board
+     */
+    @Test
+    void testUpdateBoardThrowsPositionOccupiedException(){
+        ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
+
+        assertThrows(PositionOccupiedException.class,
+                () -> ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer2().getMarker()));
     }
 }
