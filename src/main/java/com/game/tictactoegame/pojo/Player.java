@@ -1,9 +1,12 @@
 package com.game.tictactoegame.pojo;
 
+import lombok.Getter;
+
 /**
  * This class holds the Player pojo
  * @Author 2020-DEV-063
  */
+@Getter
 public class Player {
     private String name;
     private String marker;
@@ -13,11 +16,4 @@ public class Player {
         this.marker = marker;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getMarker() {
-        return marker;
-    }
 }
