@@ -6,8 +6,13 @@ import com.game.tictactoegame.service.TicTacToeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import static com.game.tictactoegame.util.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * This class is to test the TicTacToeGame class
@@ -168,5 +173,30 @@ class TicTacToeGameTest {
 
         ticTacToeGame.setWinner(ticTacToeGame.getPlayer2());
         assertEquals(PLAYER2_WINS, ticTacToeGame.printResult());
+    }
+
+    /**
+     * To check if the askPlayerInput method returns the input of the user
+     */
+    @Test
+    void testAskPlayerInput() {
+        Scanner mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
+        when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1);
+
+        assertEquals(1, ticTacToeGame.askPlayerInput());
+    }
+
+    /**
+     * To check if the InputMismatchException is caught inside the askPlayerInput method
+     */
+    @Test
+    void testInvalidInput(){
+        Scanner mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
+        when(ticTacToeGame.getAskForUserInput().nextInt()).thenThrow(new InputMismatchException()).thenReturn(1);
+        assertDoesNotThrow(() -> ticTacToeGame.askPlayerInput());
     }
 }
