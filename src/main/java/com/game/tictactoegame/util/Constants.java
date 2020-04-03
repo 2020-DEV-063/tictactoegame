@@ -17,4 +17,6 @@ public class Constants {
     public static final String PLAYER1_WINS = "Player 1 wins!";
     public static final String PLAYER2_WINS = "Player 2 wins!";
     public static final String INVALID_INPUT = "Invalid input! Please enter a number from 1 to 3";
+    public static final String OUTSIDEOFBOARD_EXCEPTION_MSG = "This position is outside of the board. Please, choose another position to put you marker.";
+    public static final String POSITION_OCCUPIED_EXCEPTION_MSG = "This position is already occupied. Please, choose another position to put you marker.";
 }
