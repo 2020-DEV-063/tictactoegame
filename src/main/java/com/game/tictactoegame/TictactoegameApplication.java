@@ -12,6 +12,8 @@ public class TictactoegameApplication {
 
         TicTacToeGame ticTacToeGame = new TicTacToeGame();
         ticTacToeGame.printBoard();
+        ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.printBoard();
     }
 
 }
