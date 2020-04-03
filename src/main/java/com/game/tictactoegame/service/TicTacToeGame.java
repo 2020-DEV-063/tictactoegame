@@ -114,6 +114,17 @@ public class TicTacToeGame {
         System.out.println(boardLayout.toString());
     }
 
+    /**
+     * This method returns the correct string depending on which player is assigned to winner
+     */
+    public String printResult(){
+        if (winner == null){
+            return DRAW;
+        } else if(winner == player1){
+            return PLAYER1_WINS;
+        } else return PLAYER2_WINS;
+    }
+
     public String[][] getBoard() {
         return board;
     }
@@ -144,5 +155,9 @@ public class TicTacToeGame {
 
     public Player getWinner() {
         return winner;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
     }
 }
