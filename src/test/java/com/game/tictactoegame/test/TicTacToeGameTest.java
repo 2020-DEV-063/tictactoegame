@@ -1,30 +1,37 @@
 package com.game.tictactoegame.test;
 
-import com.game.tictactoegame.exceptions.OutsideOfBoardException;
-import com.game.tictactoegame.exceptions.PositionOccupiedException;
-import com.game.tictactoegame.service.TicTacToeGame;
-import com.game.tictactoegame.util.Constants;
+import static com.game.tictactoegame.util.Constants.DRAW;
+import static com.game.tictactoegame.util.Constants.PLAYER1_MARKER;
+import static com.game.tictactoegame.util.Constants.PLAYER1_WINS;
+import static com.game.tictactoegame.util.Constants.PLAYER2_WINS;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.game.tictactoegame.exceptions.OutsideOfBoardException;
+import com.game.tictactoegame.exceptions.PositionOccupiedException;
+import com.game.tictactoegame.service.TicTacToeGame;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import static com.game.tictactoegame.util.Constants.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * This class is to test the TicTacToeGame class
  * @Author 2020-DEV-063
  */
-class TicTacToeGameTest {
+class TicTacToeGameTest{
 
     private TicTacToeGame ticTacToeGame;
 
     @BeforeEach
-    void init() {
+    void init(){
         ticTacToeGame = new TicTacToeGame();
     }
 
@@ -32,7 +39,7 @@ class TicTacToeGameTest {
      * To check if there are 9 empty positions on the board
      */
     @Test
-    void testNumberOfPositionsOnBoard() {
+    void testNumberOfPositionsOnBoard(){
         String[][] testBoard = ticTacToeGame.getBoard();
         assertEquals(9, testBoard[0].length + testBoard[1].length + testBoard[2].length);
     }
@@ -42,7 +49,6 @@ class TicTacToeGameTest {
      */
     @Test
     void testBoardLayoutIsCreated(){
-        TicTacToeGame ticTacToeGame = new TicTacToeGame();
         ticTacToeGame.printBoard();
 
         assertFalse(ticTacToeGame.getBoardLayout().toString().isEmpty());
@@ -127,7 +133,7 @@ class TicTacToeGameTest {
      * Test to check if there is a winner on diagonal from left under to right top
      */
     @Test
-    void testCheckForWinnerOnLeftUnderToRightTopDiagonal() {
+    void testCheckForWinnerOnLeftUnderToRightTopDiagonal(){
         ticTacToeGame.updateBoard(3, 1, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
@@ -139,7 +145,7 @@ class TicTacToeGameTest {
      * Test to check if there is a winner on diagonal from left top to right under
      */
     @Test
-    void testCheckForWinnerOnLeftTopToRightUnderDiagonal() {
+    void testCheckForWinnerOnLeftTopToRightUnderDiagonal(){
         ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(3, 3, ticTacToeGame.getPlayer1().getMarker());
@@ -182,7 +188,7 @@ class TicTacToeGameTest {
      * To check if the askPlayerInput method returns the input of the user
      */
     @Test
-    void testAskPlayerInput() {
+    void testAskPlayerInput(){
         Scanner mockScanner = mock(Scanner.class);
         ticTacToeGame.setAskForUserInput(mockScanner);
 
@@ -215,7 +221,7 @@ class TicTacToeGameTest {
         when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1).thenReturn(2);
 
         ticTacToeGame.newTurn();
-        assertEquals(Constants.PLAYER1_MARKER, ticTacToeGame.getBoard()[0][1]);
+        assertEquals(PLAYER1_MARKER, ticTacToeGame.getBoard()[0][1]);
     }
 
     /**
