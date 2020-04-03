@@ -106,8 +106,8 @@ public class TicTacToeGame {
      */
     public void checkAndAssignWinner(int row, int column, String marker){
         if(checkWinnerOnRow(row - 1) || checkWinnerInColumn(column - 1)
-                || checkWinnerOnLeftUnderToRightTopDiagonal(marker)
-                || checkWinnerOnLeftTopToRightUnderDiagonal(marker)){
+                || checkWinnerOnRightToLeftDiagonal(marker)
+                || checkWinnerOnLeftToRightDiagonal(marker)){
             setWeHaveAWinner(true);
         }
     }
@@ -139,14 +139,14 @@ public class TicTacToeGame {
     /**
      * This method will return true if there is a winner on this diagonal
      */
-    public boolean checkWinnerOnLeftUnderToRightTopDiagonal(String marker){
+    public boolean checkWinnerOnRightToLeftDiagonal(String marker){
         return getBoard()[2][0].equals(marker) && getBoard()[1][1].equals(marker) && getBoard()[0][2].equals(marker);
     }
 
     /**
      * This method will return true if there is a winner on this diagonal
      */
-    public boolean checkWinnerOnLeftTopToRightUnderDiagonal(String marker){
+    public boolean checkWinnerOnLeftToRightDiagonal(String marker){
         return getBoard()[0][0].equals(marker) && getBoard()[1][1].equals(marker) && getBoard()[2][2].equals(marker);
     }
 
