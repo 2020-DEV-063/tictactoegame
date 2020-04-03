@@ -144,11 +144,11 @@ public class TicTacToeGame {
     }
 
     /**
-     * This method takes row, column and marker as arguments and will put the given
-     * marker on the given position of the board If the position is already occupied
-     * a PositionOccupiedException will be thrown
+     * This method takes row, column and marker as arguments
+     * and will put the given marker on the given position of the board
+     * If the position is already occupied a PositionOccupiedException will be thrown.
      */
-    public void updateBoard(int row, int column, String marker) throws PositionOccupiedException {
+    public void updateBoard(int row, int column, String marker) throws PositionOccupiedException{
         if (getBoard()[row - 1][column - 1].equals(Constants.EMPTY_POSITION)) {
             getBoard()[row - 1][column - 1] = marker;
             checkAndAssignWinner(row, column, marker);
@@ -157,10 +157,10 @@ public class TicTacToeGame {
     }
 
     /**
-     * if the board position entered by player is not in the range of 1 to 3
+     * If the board position entered by player is not in the range of 1 to 3
      * OutsideOfBoardException will be thrown.
      */
-    public void validateBoardPosition(int row, int column) {
+    public void validateBoardPosition(int row, int column) throws OutsideOfBoardException{
         if ((row < 1 || row > 3) || (column < 1 || column > 3)) {
             throw new OutsideOfBoardException();
         }
