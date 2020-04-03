@@ -12,7 +12,7 @@ import static com.game.tictactoegame.util.Constants.*;
  */
 public class TicTacToeGame {
 
-    public final String[][] EMPTY_BOARD = {{" - ", " - ", " - "}, {" - ", " - ", " - "}, {" - ", " - ", " - "}};
+    private final String[][] EMPTY_BOARD = {{" - ", " - ", " - "}, {" - ", " - ", " - "}, {" - ", " - ", " - "}};
 
     private String [][] board = EMPTY_BOARD;
     private StringBuilder boardLayout;
@@ -21,6 +21,21 @@ public class TicTacToeGame {
     private Player player2 = new Player(PLAYER2_NAME, PLAYER2_MARKER);
     private int turnCounter = ZERO_TURNS_PLAYED;
     private Player playerAtTurn;
+    private Player winner;
+
+    /**
+     * Method takes row, column and marker of last move and uses them to check the different ways someone can win
+     */
+    public void checkAndAssignWinner(int row, int column, String marker){
+        boolean winnerOnRow = checkWinnerOnRow(row-1);
+        boolean winnerInColumn = checkWinnerInColumn(column-1);
+        boolean winnerOnLeftUnderToRightTopDiagonal = checkWinnerOnLeftUnderToRightTopDiagonal(marker);
+        boolean winnerOnLeftTopToRightUnderDiagonal = checkWinnerOnLeftTopToRightUnderDiagonal(marker);
+
+        if(winnerOnRow || winnerInColumn || winnerOnLeftUnderToRightTopDiagonal || winnerOnLeftTopToRightUnderDiagonal){
+            winner = playerAtTurn;
+        }
+    }
 
     /**
      * This method will return true if there is a winner on the given row
@@ -119,8 +134,15 @@ public class TicTacToeGame {
         return playerAtTurn;
     }
 
+    public void setPlayerAtTurn(Player playerAtTurn) {
+        this.playerAtTurn = playerAtTurn;
+    }
+
     public void setTurnCounter(int turnCounter) {
         this.turnCounter = turnCounter;
     }
 
+    public Player getWinner() {
+        return winner;
+    }
 }
