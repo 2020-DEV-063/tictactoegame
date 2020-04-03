@@ -13,6 +13,7 @@ public class Constants {
     public static final String PLAYER1_MARKER = " X ";
     public static final String PLAYER2_MARKER = " O ";
     public static final int ZERO_TURNS_PLAYED = 0;
+    public static final int MAX_NUMBER_OF_TURNS = 9;
     public static final String DRAW = "It's a draw!";
     public static final String PLAYER1_WINS = "Player 1 wins!";
     public static final String PLAYER2_WINS = "Player 2 wins!";
