@@ -50,7 +50,7 @@ public class TicTacToeGame {
      * This method simulates a turn
      */
     public void newTurn(){
-        determineWhoIsAtTurn();
+        setPlayer(determineWhoIsAtTurn());
         int row;
         int column;
         boolean markerIsPut = false;
@@ -158,22 +158,21 @@ public class TicTacToeGame {
     /**
      * This method uses the turnCounter to determine who's turn it is
      */
-    public void determineWhoIsAtTurn(){
-        if(turnCounter % 2 == 0){
-            player = player1;
-        } else {
-            player = player2;
+    public Player determineWhoIsAtTurn(){
+        if (getTurnCounter() % 2 == 0) {
+            return getPlayer1();
         }
+        return getPlayer2();
     }
 
     /**
      * This method will update the boardLayout and print it to the console
      */
     public void printBoard(){
-        boardLayout = new StringBuilder();
+        this.boardLayout = new StringBuilder();
         for(int row =0; row < 3; row ++) {
             for(int column=0; column < 3 ; column ++ ) {
-                boardLayout.append(LAYOUT_SEPARATOR).append(board[row][column]);
+                boardLayout.append(LAYOUT_SEPARATOR).append(getBoard()[row][column]);
             }
             boardLayout.append(LAYOUT_SEPARATOR).append(NEW_LINE);
         }
