@@ -140,7 +140,7 @@ class TicTacToeGameTest{
         ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
 
-        assertTrue(ticTacToeGame.checkWinnerOnLeftUnderToRightTopDiagonal(ticTacToeGame.getPlayer1().getMarker()));
+        assertTrue(ticTacToeGame.checkWinnerOnRightToLeftDiagonal(ticTacToeGame.getPlayer1().getMarker()));
     }
 
     /**
@@ -152,7 +152,7 @@ class TicTacToeGameTest{
         ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(3, 3, ticTacToeGame.getPlayer1().getMarker());
 
-        assertTrue(ticTacToeGame.checkWinnerOnLeftTopToRightUnderDiagonal(ticTacToeGame.getPlayer1().getMarker()));
+        assertTrue(ticTacToeGame.checkWinnerOnLeftToRightDiagonal(ticTacToeGame.getPlayer1().getMarker()));
     }
 
     /**
