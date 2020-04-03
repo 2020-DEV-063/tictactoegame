@@ -62,11 +62,11 @@ class TicTacToeGameTest{
     @Test
     void testWhoIsAtTurn(){
         ticTacToeGame.setTurnCounter(4);
-        ticTacToeGame.determineWhoIsAtTurn();
+        ticTacToeGame.setPlayer(ticTacToeGame.determineWhoIsAtTurn());
         assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getPlayer());
 
         ticTacToeGame.setTurnCounter(5);
-        ticTacToeGame.determineWhoIsAtTurn();
+        ticTacToeGame.setPlayer(ticTacToeGame.determineWhoIsAtTurn());
         assertEquals(ticTacToeGame.getPlayer2(), ticTacToeGame.getPlayer());
     }
 
