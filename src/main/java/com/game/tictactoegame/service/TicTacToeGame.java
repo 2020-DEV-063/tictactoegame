@@ -1,5 +1,6 @@
 package com.game.tictactoegame.service;
 
+import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.pojo.Player;
 
 import static com.game.tictactoegame.util.Constants.*;
@@ -21,9 +22,12 @@ public class TicTacToeGame {
     /**
      * This method takes row, column and marker as arguments
      * and will put the given marker on the given position of the board
+     * If the position is already occupied a PositionOccupiedException will be thrown
      */
-    public void updateBoard(int row, int column, String marker) {
-        board[row - 1][column - 1] = marker;
+    public void updateBoard(int row, int column, String marker) throws PositionOccupiedException {
+        if (board[row - 1][column - 1].equals(EMPTY_POSITION)) {
+            board[row - 1][column - 1] = marker;
+        } else throw new PositionOccupiedException();
     }
 
     /**
