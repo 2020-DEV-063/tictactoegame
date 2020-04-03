@@ -25,8 +25,21 @@ public class TicTacToeGame {
     private int turnCounter = ZERO_TURNS_PLAYED;
     private Player playerAtTurn;
     private Player winner;
+    private boolean weHaveAWinner = false;
 
     private Scanner askForUserInput;
+
+    /**
+     * This method simulates a game
+     */
+    public void newGame() {
+        while (turnCounter < MAX_NUMBER_OF_TURNS && !weHaveAWinner){
+            printBoard();
+            newTurn();
+        }
+        printBoard();
+        System.out.println(printResult());
+    }
 
     /**
      * This method simulates a turn
@@ -81,6 +94,7 @@ public class TicTacToeGame {
 
         if(winnerOnRow || winnerInColumn || winnerOnLeftUnderToRightTopDiagonal || winnerOnLeftTopToRightUnderDiagonal){
             winner = playerAtTurn;
+            weHaveAWinner = true;
         }
     }
 
@@ -218,5 +232,9 @@ public class TicTacToeGame {
 
     public void setAskForUserInput(Scanner askForUserInput) {
         this.askForUserInput = askForUserInput;
+    }
+
+    public boolean isWeHaveAWinner() {
+        return weHaveAWinner;
     }
 }
