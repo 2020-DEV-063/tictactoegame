@@ -92,4 +92,16 @@ class TicTacToeGameTest {
 
         assertTrue(ticTacToeGame.checkWinnerOnRow(1));
     }
+
+    /**
+     * To check if there is a winner in the given column
+     */
+    @Test
+    void testCheckForWinnerInColumn(){
+        ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(2, 1, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(3, 1, ticTacToeGame.getPlayer1().getMarker());
+
+        assertTrue(ticTacToeGame.checkWinnerInColumn(1));
+    }
 }
