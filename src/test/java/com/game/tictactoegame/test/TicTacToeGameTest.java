@@ -6,6 +6,7 @@ import com.game.tictactoegame.service.TicTacToeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static com.game.tictactoegame.util.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -155,5 +156,19 @@ class TicTacToeGameTest {
         ticTacToeGame.checkAndAssignWinner(1, 3, ticTacToeGame.getPlayer1().getMarker());
 
         assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getWinner());
+    }
+
+    /**
+     * To check if printResult method return the right constant string
+     */
+    @Test
+    void testPrintResult(){
+        assertEquals(DRAW, ticTacToeGame.printResult());
+
+        ticTacToeGame.setWinner(ticTacToeGame.getPlayer1());
+        assertEquals(PLAYER1_WINS, ticTacToeGame.printResult());
+
+        ticTacToeGame.setWinner(ticTacToeGame.getPlayer2());
+        assertEquals(PLAYER2_WINS, ticTacToeGame.printResult());
     }
 }
