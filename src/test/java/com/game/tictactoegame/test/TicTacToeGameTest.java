@@ -57,11 +57,11 @@ class TicTacToeGameTest {
     void testWhoIsAtTurn(){
         ticTacToeGame.setTurnCounter(4);
         ticTacToeGame.determineWhoIsAtTurn();
-        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getPlayerAtTurn());
+        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getPlayer());
 
         ticTacToeGame.setTurnCounter(5);
         ticTacToeGame.determineWhoIsAtTurn();
-        assertEquals(ticTacToeGame.getPlayer2(), ticTacToeGame.getPlayerAtTurn());
+        assertEquals(ticTacToeGame.getPlayer2(), ticTacToeGame.getPlayer());
     }
 
     /**
@@ -154,12 +154,12 @@ class TicTacToeGameTest {
      */
     @Test
     void testAssignWinner(){
-        ticTacToeGame.setPlayerAtTurn(ticTacToeGame.getPlayer1());
+        ticTacToeGame.setPlayer(ticTacToeGame.getPlayer1());
         ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(1, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
 
-        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getWinner());
+        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getPlayer());
     }
 
     /**
@@ -169,10 +169,12 @@ class TicTacToeGameTest {
     void testPrintResult(){
         assertEquals(DRAW, ticTacToeGame.printResult());
 
-        ticTacToeGame.setWinner(ticTacToeGame.getPlayer1());
+        ticTacToeGame.setPlayer(ticTacToeGame.getPlayer1());
+        ticTacToeGame.setWeHaveAWinner(true);
         assertEquals(PLAYER1_WINS, ticTacToeGame.printResult());
 
-        ticTacToeGame.setWinner(ticTacToeGame.getPlayer2());
+        ticTacToeGame.setPlayer(ticTacToeGame.getPlayer2());
+        ticTacToeGame.setWeHaveAWinner(true);
         assertEquals(PLAYER2_WINS, ticTacToeGame.printResult());
     }
 
@@ -259,6 +261,6 @@ class TicTacToeGameTest {
 
         ticTacToeGame.newGame();
         assertTrue(ticTacToeGame.isWeHaveAWinner());
-        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getWinner());
+        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getPlayer());
     }
 }
