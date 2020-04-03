@@ -1,5 +1,6 @@
 package com.game.tictactoegame.test;
 
+import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.service.TicTacToeGame;
 import org.junit.jupiter.api.BeforeEach;
@@ -79,6 +80,16 @@ class TicTacToeGameTest {
 
         assertThrows(PositionOccupiedException.class,
                 () -> ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer2().getMarker()));
+    }
+
+    /**
+     * To check if the updateBoard method throws an exception if a player tries to put his marker
+     * outside the range of the board
+     */
+    @Test
+    void testUpdateBoardThrowsOutsideOfBoardException(){
+        assertThrows(OutsideOfBoardException.class,
+                () -> ticTacToeGame.updateBoard(4, 2, ticTacToeGame.getPlayer1().getMarker()));
     }
 
     /**
