@@ -1,14 +1,20 @@
 package com.game.tictactoegame.exceptions;
 
+import com.game.tictactoegame.util.Constants;
+
+import static com.game.tictactoegame.util.Constants.POSITION_OCCUPIED_EXCEPTION_MSG;
+
 /**
  * This class holds the PositionOccupiedException
  * @Author 2020-DEV-063
  */
 public class PositionOccupiedException extends RuntimeException{
-    private String message = "This position is already occupied. Please, choose another position to put you marker.";
+
+    private static final long serialVersionUID = 1L;
 
     @Override
     public String getMessage() {
-        return message;
+        return POSITION_OCCUPIED_EXCEPTION_MSG;
     }
+
 }
