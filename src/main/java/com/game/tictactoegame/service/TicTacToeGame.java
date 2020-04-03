@@ -95,13 +95,10 @@ public class TicTacToeGame {
      * Method takes row, column and marker of last move and uses them to check the different ways someone can win
      */
     public void checkAndAssignWinner(int row, int column, String marker){
-        boolean winnerOnRow = checkWinnerOnRow(row-1);
-        boolean winnerInColumn = checkWinnerInColumn(column-1);
-        boolean winnerOnLeftUnderToRightTopDiagonal = checkWinnerOnLeftUnderToRightTopDiagonal(marker);
-        boolean winnerOnLeftTopToRightUnderDiagonal = checkWinnerOnLeftTopToRightUnderDiagonal(marker);
-
-        if(winnerOnRow || winnerInColumn || winnerOnLeftUnderToRightTopDiagonal || winnerOnLeftTopToRightUnderDiagonal){
-            weHaveAWinner = true;
+        if(checkWinnerOnRow(row - 1) || checkWinnerInColumn(column - 1)
+                || checkWinnerOnLeftUnderToRightTopDiagonal(marker)
+                || checkWinnerOnLeftTopToRightUnderDiagonal(marker)){
+            setWeHaveAWinner(true);
         }
     }
 
