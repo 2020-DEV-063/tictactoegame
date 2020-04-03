@@ -105,6 +105,9 @@ class TicTacToeGameTest {
         assertTrue(ticTacToeGame.checkWinnerInColumn(1));
     }
 
+    /**
+     * Test to check if there is a winner on diagonal from left under to right top
+     */
     @Test
     void testCheckForWinnerOnLeftUnderToRightTopDiagonal() {
         ticTacToeGame.updateBoard(3, 1, ticTacToeGame.getPlayer1().getMarker());
@@ -112,5 +115,17 @@ class TicTacToeGameTest {
         ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
 
         assertTrue(ticTacToeGame.checkWinnerOnLeftUnderToRightTopDiagonal(ticTacToeGame.getPlayer1().getMarker()));
+    }
+
+    /**
+     * Test to check if there is a winner on diagonal from left top to right under
+     */
+    @Test
+    void testCheckForWinnerOnLeftTopToRightUnderDiagonal() {
+        ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(3, 3, ticTacToeGame.getPlayer1().getMarker());
+
+        assertTrue(ticTacToeGame.checkWinnerOnLeftTopToRightUnderDiagonal(ticTacToeGame.getPlayer1().getMarker()));
     }
 }
