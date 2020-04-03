@@ -3,6 +3,7 @@ package com.game.tictactoegame.test;
 import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.service.TicTacToeGame;
+import com.game.tictactoegame.util.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -198,5 +199,20 @@ class TicTacToeGameTest {
 
         when(ticTacToeGame.getAskForUserInput().nextInt()).thenThrow(new InputMismatchException()).thenReturn(1);
         assertDoesNotThrow(() -> ticTacToeGame.askPlayerInput());
+    }
+
+    /**
+     * To check if the newTurn method uses the user input
+     * to put the players marker on the correct position on the board
+     */
+    @Test
+    void testNewTurn(){
+        Scanner mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
+        when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1).thenReturn(2);
+
+        ticTacToeGame.newTurn();
+        assertEquals(Constants.PLAYER1_MARKER, ticTacToeGame.getBoard()[0][1]);
     }
 }
