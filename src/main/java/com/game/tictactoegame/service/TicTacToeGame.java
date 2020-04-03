@@ -52,17 +52,21 @@ public class TicTacToeGame {
      */
     public void newTurn(){
         setPlayer(determineWhoIsAtTurn());
+
         int row;
         int column;
         boolean markerIsPut = false;
+
         while(!markerIsPut){
             try {
                 System.out.println(player.getName() + ", on which row do you want to put " + player.getMarker() + "?");
                 row = askPlayerInput();
+
                 System.out.println("Okay, " + player.getName() + ". And in which column?");
                 column = askPlayerInput();
 
                 validateBoardPosition(row, column);
+
                 updateBoard(row, column, getPlayer().getMarker());
                 markerIsPut = true;
             } catch (OutsideOfBoardException | PositionOccupiedException exception) {
