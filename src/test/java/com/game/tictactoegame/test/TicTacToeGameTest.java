@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * This class is to test the TicTacToeGame class
+ * @Author 2020-DEV-063
  */
 class TicTacToeGameTest {
 
@@ -37,5 +38,21 @@ class TicTacToeGameTest {
         ticTacToeGame.printBoard();
 
         assertFalse(ticTacToeGame.getBoardLayout().toString().isEmpty());
+    }
+
+    /**
+     * To check which players turn it is
+     * The TicTacToeGame class will contain a turnCounter variable that will be incremented every turn
+     * player1 is at turn when the turnCounter is even. When the turnCounter is uneven, player2 is at turn
+     */
+    @Test
+    void testWhoIsAtTurn(){
+        ticTacToeGame.setTurnCounter(4);
+        ticTacToeGame.determineWhoIsAtTurn();
+        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getPlayerAtTurn());
+
+        ticTacToeGame.setTurnCounter(5);
+        ticTacToeGame.determineWhoIsAtTurn();
+        assertEquals(ticTacToeGame.getPlayer2(), ticTacToeGame.getPlayerAtTurn());
     }
 }
