@@ -3,6 +3,7 @@ package com.game.tictactoegame.service;
 import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.pojo.Player;
+import com.game.tictactoegame.util.Constants;
 import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
@@ -25,8 +26,7 @@ public class TicTacToeGame {
     private Player player1 = new Player(PLAYER1_NAME, PLAYER1_MARKER);
     private Player player2 = new Player(PLAYER2_NAME, PLAYER2_MARKER);
     private int turnCounter = ZERO_TURNS_PLAYED;
-    private Player playerAtTurn;
-    private Player winner;
+    private Player player;
     private boolean weHaveAWinner = false;
 
     private Scanner askForUserInput;
@@ -53,11 +53,11 @@ public class TicTacToeGame {
         boolean markerIsPut = false;
         while(!markerIsPut){
             try {
-                System.out.println(playerAtTurn.getName() + ", on which row do you want to put " + playerAtTurn.getMarker() + "?");
+                System.out.println(player.getName() + ", on which row do you want to put " + player.getMarker() + "?");
                 row = askPlayerInput();
-                System.out.println("Okay, " + playerAtTurn.getName() + ". And in which column?");
+                System.out.println("Okay, " + player.getName() + ". And in which column?");
                 column = askPlayerInput();
-                updateBoard(row, column, getPlayerAtTurn().getMarker());
+                updateBoard(row, column, getPlayer().getMarker());
                 markerIsPut = true;
             } catch (OutsideOfBoardException | PositionOccupiedException exception) {
                 System.out.println(exception.getMessage());
@@ -95,7 +95,6 @@ public class TicTacToeGame {
         boolean winnerOnLeftTopToRightUnderDiagonal = checkWinnerOnLeftTopToRightUnderDiagonal(marker);
 
         if(winnerOnRow || winnerInColumn || winnerOnLeftUnderToRightTopDiagonal || winnerOnLeftTopToRightUnderDiagonal){
-            winner = playerAtTurn;
             weHaveAWinner = true;
         }
     }
@@ -158,9 +157,9 @@ public class TicTacToeGame {
      */
     public void determineWhoIsAtTurn(){
         if(turnCounter % 2 == 0){
-            playerAtTurn = player1;
+            player = player1;
         } else {
-            playerAtTurn = player2;
+            player = player2;
         }
     }
 
@@ -182,11 +181,13 @@ public class TicTacToeGame {
      * This method returns the correct string depending on which player is assigned to winner
      */
     public String printResult(){
-        if (winner == player1){
-            return PLAYER1_WINS;
-        } else if(winner == player2){
-            return PLAYER2_WINS;
-        } else return DRAW;
+        if (!isWeHaveAWinner()) {
+            return DRAW;
+        } else {
+            if (player == player1) {
+                return PLAYER1_WINS;
+            } else return PLAYER2_WINS;
+        }
     }
 
     public String[][] getBoard() {
@@ -205,24 +206,8 @@ public class TicTacToeGame {
         return player2;
     }
 
-    public Player getPlayerAtTurn() {
-        return playerAtTurn;
-    }
-
-    public void setPlayerAtTurn(Player playerAtTurn) {
-        this.playerAtTurn = playerAtTurn;
-    }
-
     public void setTurnCounter(int turnCounter) {
         this.turnCounter = turnCounter;
-    }
-
-    public Player getWinner() {
-        return winner;
-    }
-
-    public void setWinner(Player winner) {
-        this.winner = winner;
     }
 
     public Scanner getAskForUserInput() {
@@ -238,5 +223,17 @@ public class TicTacToeGame {
 
     public boolean isWeHaveAWinner() {
         return weHaveAWinner;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setWeHaveAWinner(boolean weHaveAWinner) {
+        this.weHaveAWinner = weHaveAWinner;
     }
 }
