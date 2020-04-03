@@ -29,6 +29,29 @@ public class TicTacToeGame {
     private Scanner askForUserInput;
 
     /**
+     * This method simulates a turn
+     */
+    public void newTurn(){
+        determineWhoIsAtTurn();
+        int row;
+        int column;
+        boolean markerIsPut = false;
+        while(!markerIsPut){
+            try {
+                System.out.println(playerAtTurn.getName() + ", on which row do you want to put " + playerAtTurn.getMarker() + "?");
+                row = askPlayerInput();
+                System.out.println("Okay, " + playerAtTurn.getName() + ". And in which column?");
+                column = askPlayerInput();
+                updateBoard(row, column, getPlayerAtTurn().getMarker());
+                markerIsPut = true;
+            } catch (OutsideOfBoardException | PositionOccupiedException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+        turnCounter++;
+    }
+
+    /**
      * This method asks for input from the user and returns the input
      */
     public int askPlayerInput() {
