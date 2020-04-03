@@ -34,6 +34,18 @@ public class TicTacToeGame {
     }
 
     /**
+     * This method will return true if there is a winner in the given column
+     */
+    public boolean checkWinnerInColumn(int column) {
+        String firstRow = board[0][column];
+        for (int row = 1; row < board.length; row++){
+            if (!board[row][column].equals(firstRow))
+                return false;
+        }
+        return true;
+    }
+
+    /**
      * This method takes row, column and marker as arguments
      * and will put the given marker on the given position of the board
      * If the position is already occupied a PositionOccupiedException will be thrown
