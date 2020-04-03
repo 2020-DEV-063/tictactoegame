@@ -215,4 +215,31 @@ class TicTacToeGameTest {
         ticTacToeGame.newTurn();
         assertEquals(Constants.PLAYER1_MARKER, ticTacToeGame.getBoard()[0][1]);
     }
+
+    /**
+     * To check if the PositionOccupiedException is caught inside the newTurn method
+     */
+    @Test
+    void testNewTurnPositionOccupiedException(){
+        Scanner mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
+        when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1).thenThrow(PositionOccupiedException.class)
+                .thenReturn(1).thenReturn(1);
+
+        assertDoesNotThrow(() -> ticTacToeGame.newTurn());
+    }
+
+    /**
+     * To check if the OutsideOfBoardException is caught inside the newTurn method
+     */
+    @Test
+    void testNewTurnOutsideOfBoardException(){
+        Scanner mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
+        when(ticTacToeGame.getAskForUserInput().nextInt()).thenThrow(OutsideOfBoardException.class).thenReturn(1);
+
+        assertDoesNotThrow(() -> ticTacToeGame.newTurn());
+    }
 }
