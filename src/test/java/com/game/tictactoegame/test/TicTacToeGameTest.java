@@ -139,4 +139,21 @@ class TicTacToeGameTest {
 
         assertTrue(ticTacToeGame.checkWinnerOnLeftTopToRightUnderDiagonal(ticTacToeGame.getPlayer1().getMarker()));
     }
+
+    /**
+     * Test to check if the right player is assigned as the winner
+     * when one of the different methods to check for a winner returns true
+     * The playerAtTurn should be assigned to winner
+     */
+    @Test
+    void testAssignWinner(){
+        ticTacToeGame.setPlayerAtTurn(ticTacToeGame.getPlayer1());
+        ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(1, 2, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
+
+        ticTacToeGame.checkAndAssignWinner(1, 3, ticTacToeGame.getPlayer1().getMarker());
+
+        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getWinner());
+    }
 }
