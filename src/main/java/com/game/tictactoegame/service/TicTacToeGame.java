@@ -118,11 +118,11 @@ public class TicTacToeGame {
      * This method returns the correct string depending on which player is assigned to winner
      */
     public String printResult(){
-        if (winner == null){
-            return DRAW;
-        } else if(winner == player1){
+        if (winner == player1){
             return PLAYER1_WINS;
-        } else return PLAYER2_WINS;
+        } else if(winner == player2){
+            return PLAYER2_WINS;
+        } else return DRAW;
     }
 
     public String[][] getBoard() {
