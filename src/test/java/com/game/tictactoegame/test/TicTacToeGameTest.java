@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.service.TicTacToeGame;
+import org.mockito.Mock;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -29,6 +30,8 @@ import java.util.Scanner;
 class TicTacToeGameTest{
 
     private TicTacToeGame ticTacToeGame;
+
+    @Mock
     private Scanner mockScanner;
 
     @BeforeEach
@@ -91,7 +94,7 @@ class TicTacToeGameTest{
      * on an already occupied position on the board
      */
     @Test
-    void testUpdateBoardThrowsPositionOccupiedException(){
+    void testPositionOccupiedException(){
         ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
 
         assertThrows(PositionOccupiedException.class,
@@ -103,7 +106,7 @@ class TicTacToeGameTest{
      * put his marker outside the range of the board
      */
     @Test
-    void testValidateBoardThrowsOutsideOfBoardException() {
+    void testOutsideOfBoardException() {
         assertThrows(OutsideOfBoardException.class, () -> ticTacToeGame.validateBoardPosition(4, 2));
     }
 
@@ -111,7 +114,7 @@ class TicTacToeGameTest{
      * To check if there is a winner on the given row
      */
     @Test
-    void testCheckForWinnerOnRow(){
+    void testForWinnerOnRow(){
         ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(1, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
@@ -123,7 +126,7 @@ class TicTacToeGameTest{
      * To check if there is a winner in the given column
      */
     @Test
-    void testCheckForWinnerInColumn(){
+    void testForWinnerInColumn(){
         ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(2, 1, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(3, 1, ticTacToeGame.getPlayer1().getMarker());
@@ -135,7 +138,7 @@ class TicTacToeGameTest{
      * Test to check if there is a winner on diagonal from left under to right top
      */
     @Test
-    void testCheckForWinnerOnLeftUnderToRightTopDiagonal(){
+    void testForWinnerOnRightToLeftDiagonal(){
         ticTacToeGame.updateBoard(3, 1, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
@@ -147,7 +150,7 @@ class TicTacToeGameTest{
      * Test to check if there is a winner on diagonal from left top to right under
      */
     @Test
-    void testCheckForWinnerOnLeftTopToRightUnderDiagonal(){
+    void testForWinnerOnLeftToRightDiagonal(){
         ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(3, 3, ticTacToeGame.getPlayer1().getMarker());
