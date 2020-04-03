@@ -109,9 +109,9 @@ public class TicTacToeGame {
      * This method will return true if there is a winner on the given row
      */
     public boolean checkWinnerOnRow(int row) {
-        String firstColumn = board[row][0];
-        for (int column = 1; column < board[row].length; column++) {
-            if (!board[row][column].equals(firstColumn))
+        String firstColumn = getBoard()[row][0];
+        for (int column = 1; column < getBoard()[row].length; column++) {
+            if (!getBoard()[row][column].equals(firstColumn))
                 return false;
         }
         return true;
@@ -121,9 +121,9 @@ public class TicTacToeGame {
      * This method will return true if there is a winner in the given column
      */
     public boolean checkWinnerInColumn(int column) {
-        String firstRow = board[0][column];
-        for (int row = 1; row < board.length; row++){
-            if (!board[row][column].equals(firstRow))
+        String firstRow = getBoard()[0][column];
+        for (int row = 1; row < getBoard().length; row++){
+            if (!getBoard()[row][column].equals(firstRow))
                 return false;
         }
         return true;
@@ -133,14 +133,14 @@ public class TicTacToeGame {
      * This method will return true if there is a winner on this diagonal
      */
     public boolean checkWinnerOnLeftUnderToRightTopDiagonal(String marker){
-        return board[2][0].equals(marker) && board[1][1].equals(marker) && board[0][2].equals(marker);
+        return getBoard()[2][0].equals(marker) && getBoard()[1][1].equals(marker) && getBoard()[0][2].equals(marker);
     }
 
     /**
      * This method will return true if there is a winner on this diagonal
      */
     public boolean checkWinnerOnLeftTopToRightUnderDiagonal(String marker){
-        return board[0][0].equals(marker) && board[1][1].equals(marker) && board[2][2].equals(marker);
+        return getBoard()[0][0].equals(marker) && getBoard()[1][1].equals(marker) && getBoard()[2][2].equals(marker);
     }
 
     /**
