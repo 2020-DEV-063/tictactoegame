@@ -3,7 +3,8 @@ package com.game.tictactoegame.service;
 import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.pojo.Player;
-import com.game.tictactoegame.util.Constants;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
@@ -15,6 +16,8 @@ import static com.game.tictactoegame.util.Constants.*;
  * This class holds the game logic
  * @Author 2020-DEV-063
  */
+@Setter
+@Getter
 @Component
 public class TicTacToeGame {
 
@@ -190,26 +193,6 @@ public class TicTacToeGame {
         }
     }
 
-    public String[][] getBoard() {
-        return board;
-    }
-
-    public StringBuilder getBoardLayout() {
-        return boardLayout;
-    }
-
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public void setTurnCounter(int turnCounter) {
-        this.turnCounter = turnCounter;
-    }
-
     public Scanner getAskForUserInput() {
         if(this.askForUserInput == null){
             this.askForUserInput = new Scanner(System.in);
@@ -217,23 +200,4 @@ public class TicTacToeGame {
         return this.askForUserInput;
     }
 
-    public void setAskForUserInput(Scanner askForUserInput) {
-        this.askForUserInput = askForUserInput;
-    }
-
-    public boolean isWeHaveAWinner() {
-        return weHaveAWinner;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public void setWeHaveAWinner(boolean weHaveAWinner) {
-        this.weHaveAWinner = weHaveAWinner;
-    }
 }
