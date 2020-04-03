@@ -16,4 +16,5 @@ public class Constants {
     public static final String DRAW = "It's a draw!";
     public static final String PLAYER1_WINS = "Player 1 wins!";
     public static final String PLAYER2_WINS = "Player 2 wins!";
+    public static final String INVALID_INPUT = "Invalid input! Please enter a number from 1 to 3";
 }
