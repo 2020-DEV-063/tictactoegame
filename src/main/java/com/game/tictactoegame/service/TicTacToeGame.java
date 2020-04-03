@@ -85,6 +85,7 @@ public class TicTacToeGame {
         if((row >= 1 && row <= 3) && (column >= 1 && column <= 3)){
             if(board[row - 1][column - 1].equals(EMPTY_POSITION)){
                 board[row - 1][column - 1] = marker;
+                checkAndAssignWinner(row, column, marker);
             } else throw new PositionOccupiedException();
         } else throw new OutsideOfBoardException();
     }
