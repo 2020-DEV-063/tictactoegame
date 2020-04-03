@@ -55,4 +55,17 @@ class TicTacToeGameTest {
         ticTacToeGame.determineWhoIsAtTurn();
         assertEquals(ticTacToeGame.getPlayer2(), ticTacToeGame.getPlayerAtTurn());
     }
+
+    /**
+     * To check if the updateBoard method changes the value of the given position correctly
+     */
+    @Test
+    void testUpdateBoard(){
+        ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(2, 3, ticTacToeGame.getPlayer2().getMarker());
+        String[][] testBoard = ticTacToeGame.getBoard();
+
+        assertEquals(ticTacToeGame.getPlayer1().getMarker(), testBoard[0][0]);
+        assertEquals(ticTacToeGame.getPlayer2().getMarker(), testBoard[1][2]);
+    }
 }
