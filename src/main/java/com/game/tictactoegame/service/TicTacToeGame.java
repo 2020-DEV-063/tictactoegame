@@ -4,6 +4,9 @@ import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.pojo.Player;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import static com.game.tictactoegame.util.Constants.*;
 
 /**
@@ -22,6 +25,27 @@ public class TicTacToeGame {
     private int turnCounter = ZERO_TURNS_PLAYED;
     private Player playerAtTurn;
     private Player winner;
+
+    private Scanner askForUserInput;
+
+    /**
+     * This method asks for input from the user and returns the input
+     */
+    public int askPlayerInput() {
+        int input = 0;
+        boolean askAgain = true;
+
+        while (askAgain) {
+            try {
+                input = getAskForUserInput().nextInt();
+                askAgain = false;
+            } catch (InputMismatchException e) {
+                System.out.println(INVALID_INPUT);
+                getAskForUserInput().next();
+            }
+        }
+        return input;
+    }
 
     /**
      * Method takes row, column and marker of last move and uses them to check the different ways someone can win
@@ -160,5 +184,16 @@ public class TicTacToeGame {
 
     public void setWinner(Player winner) {
         this.winner = winner;
+    }
+
+    public Scanner getAskForUserInput() {
+        if(this.askForUserInput == null){
+            this.askForUserInput = new Scanner(System.in);
+        }
+        return this.askForUserInput;
+    }
+
+    public void setAskForUserInput(Scanner askForUserInput) {
+        this.askForUserInput = askForUserInput;
     }
 }
