@@ -3,7 +3,6 @@ package com.game.tictactoegame.service;
 import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.pojo.Player;
-import com.game.tictactoegame.util.Constants;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -12,6 +11,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static com.game.tictactoegame.util.Constants.*;
+
 
 /**
  * This class holds the game logic
@@ -29,7 +29,9 @@ public class TicTacToeGame {
 
     private Player player1 = new Player(PLAYER1_NAME, PLAYER1_MARKER);
     private Player player2 = new Player(PLAYER2_NAME, PLAYER2_MARKER);
+
     private int turnCounter = ZERO_TURNS_PLAYED;
+
     private Player player;
     private boolean weHaveAWinner = false;
 
@@ -39,12 +41,16 @@ public class TicTacToeGame {
      * This method simulates a game
      */
     public void newGame() {
-        while (turnCounter < MAX_NUMBER_OF_TURNS && !weHaveAWinner){
+        try {
+            while (getTurnCounter() < MAX_NUMBER_OF_TURNS && !isWeHaveAWinner()) {
+                printBoard();
+                newTurn();
+            }
             printBoard();
-            newTurn();
+            System.out.println(printResult());
+        } finally {
+            getAskForUserInput().close();
         }
-        printBoard();
-        System.out.println(printResult());
     }
 
     /**
@@ -150,7 +156,7 @@ public class TicTacToeGame {
      * If the position is already occupied a PositionOccupiedException will be thrown.
      */
     public void updateBoard(int row, int column, String marker) throws PositionOccupiedException{
-        if (getBoard()[row - 1][column - 1].equals(Constants.EMPTY_POSITION)) {
+        if (getBoard()[row - 1][column - 1].equals(EMPTY_POSITION)) {
             getBoard()[row - 1][column - 1] = marker;
             checkAndAssignWinner(row, column, marker);
         } else
