@@ -13,10 +13,18 @@ public class TicTacToeGame {
     private String [][] board = EMPTY_BOARD;
     private StringBuilder boardLayout;
 
-    private Player player1 = new Player(PLAYER1_NAME);
-    private Player player2 = new Player(PLAYER2_NAME);
+    private Player player1 = new Player(PLAYER1_NAME, PLAYER1_MARKER);
+    private Player player2 = new Player(PLAYER2_NAME, PLAYER2_MARKER);
     private int turnCounter = ZERO_TURNS_PLAYED;
     private Player playerAtTurn;
+
+    /**
+     * This method takes row, column and marker as arguments
+     * and will put the given marker on the given position of the board
+     */
+    public void updateBoard(int row, int column, String marker) {
+        board[row - 1][column - 1] = marker;
+    }
 
     /**
      * This method uses the turnCounter to determine who's turn it is
