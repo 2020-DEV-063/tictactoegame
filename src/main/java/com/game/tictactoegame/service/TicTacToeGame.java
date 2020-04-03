@@ -3,6 +3,7 @@ package com.game.tictactoegame.service;
 import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.pojo.Player;
+import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ import static com.game.tictactoegame.util.Constants.*;
  * This class holds the game logic
  * @Author 2020-DEV-063
  */
+@Component
 public class TicTacToeGame {
 
     private final String[][] EMPTY_BOARD = {{" - ", " - ", " - "}, {" - ", " - ", " - "}, {" - ", " - ", " - "}};
