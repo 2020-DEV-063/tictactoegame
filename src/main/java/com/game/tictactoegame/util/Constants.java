@@ -6,4 +6,6 @@ package com.game.tictactoegame.util;
  */
 public class Constants {
     public static final String[][] EMPTY_BOARD = {{" - ", " - ", " - "}, {" - ", " - ", " - "}, {" - ", " - ", " - "}};
+    public static final String LAYOUT_SEPARATOR = " | ";
+    public static final String NEW_LINE = "\n";
 }
