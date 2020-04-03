@@ -242,4 +242,23 @@ class TicTacToeGameTest {
 
         assertDoesNotThrow(() -> ticTacToeGame.newTurn());
     }
+
+    /**
+     * Test for the newGame method with scenario where Player 1 wins
+     */
+    @Test
+    void testNewGamePlayer1Wins(){
+        Scanner mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
+        when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1).thenReturn(1)
+                .thenReturn(1).thenReturn(2)
+                .thenReturn(2).thenReturn(2)
+                .thenReturn(1).thenReturn(3)
+                .thenReturn(3).thenReturn(3);
+
+        ticTacToeGame.newGame();
+        assertTrue(ticTacToeGame.isWeHaveAWinner());
+        assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getWinner());
+    }
 }
