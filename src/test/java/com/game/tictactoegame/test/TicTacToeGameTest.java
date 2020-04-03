@@ -153,8 +153,6 @@ class TicTacToeGameTest {
         ticTacToeGame.updateBoard(1, 2, ticTacToeGame.getPlayer1().getMarker());
         ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
 
-        ticTacToeGame.checkAndAssignWinner(1, 3, ticTacToeGame.getPlayer1().getMarker());
-
         assertEquals(ticTacToeGame.getPlayer1(), ticTacToeGame.getWinner());
     }
 
