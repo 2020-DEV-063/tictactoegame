@@ -80,4 +80,16 @@ class TicTacToeGameTest {
         assertThrows(PositionOccupiedException.class,
                 () -> ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer2().getMarker()));
     }
+
+    /**
+     * To check if there is a winner on the given row
+     */
+    @Test
+    void testCheckForWinnerOnRow(){
+        ticTacToeGame.updateBoard(1, 1, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(1, 2, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
+
+        assertTrue(ticTacToeGame.checkWinnerOnRow(1));
+    }
 }
