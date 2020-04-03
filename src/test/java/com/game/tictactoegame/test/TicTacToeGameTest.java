@@ -96,13 +96,12 @@ class TicTacToeGameTest{
     }
 
     /**
-     * To check if the updateBoard method throws an exception if a player tries to put his marker
-     * outside the range of the board
+     * To check if the validateBoard method throws an exception if a player tries to
+     * put his marker outside the range of the board
      */
     @Test
-    void testUpdateBoardThrowsOutsideOfBoardException(){
-        assertThrows(OutsideOfBoardException.class,
-                () -> ticTacToeGame.updateBoard(4, 2, ticTacToeGame.getPlayer1().getMarker()));
+    void testValidateBoardThrowsOutsideOfBoardException() {
+        assertThrows(OutsideOfBoardException.class, () -> ticTacToeGame.validateBoardPosition(4, 2));
     }
 
     /**
