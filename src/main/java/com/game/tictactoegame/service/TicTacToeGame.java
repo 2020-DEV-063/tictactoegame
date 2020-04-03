@@ -53,6 +53,13 @@ public class TicTacToeGame {
     }
 
     /**
+     * This method will return true if there is a winner on this diagonal
+     */
+    public boolean checkWinnerOnLeftTopToRightUnderDiagonal(String marker){
+        return board[0][0].equals(marker) && board[1][1].equals(marker) && board[2][2].equals(marker);
+    }
+
+    /**
      * This method takes row, column and marker as arguments
      * and will put the given marker on the given position of the board
      * If the position is already occupied a PositionOccupiedException will be thrown
