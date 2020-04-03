@@ -3,6 +3,7 @@ package com.game.tictactoegame.service;
 import com.game.tictactoegame.exceptions.OutsideOfBoardException;
 import com.game.tictactoegame.exceptions.PositionOccupiedException;
 import com.game.tictactoegame.pojo.Player;
+import com.game.tictactoegame.util.Constants;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -60,6 +61,8 @@ public class TicTacToeGame {
                 row = askPlayerInput();
                 System.out.println("Okay, " + player.getName() + ". And in which column?");
                 column = askPlayerInput();
+
+                validateBoardPosition(row, column);
                 updateBoard(row, column, getPlayer().getMarker());
                 markerIsPut = true;
             } catch (OutsideOfBoardException | PositionOccupiedException exception) {
@@ -141,18 +144,26 @@ public class TicTacToeGame {
     }
 
     /**
-     * This method takes row, column and marker as arguments
-     * and will put the given marker on the given position of the board
-     * If the position is already occupied a PositionOccupiedException will be thrown
-     * If the position is outside the range of the board a OutsideOfBoardException will be thrown
+     * This method takes row, column and marker as arguments and will put the given
+     * marker on the given position of the board If the position is already occupied
+     * a PositionOccupiedException will be thrown
      */
-    public void updateBoard(int row, int column, String marker) throws PositionOccupiedException, OutsideOfBoardException {
-        if((row >= 1 && row <= 3) && (column >= 1 && column <= 3)){
-            if(board[row - 1][column - 1].equals(EMPTY_POSITION)){
-                board[row - 1][column - 1] = marker;
-                checkAndAssignWinner(row, column, marker);
-            } else throw new PositionOccupiedException();
-        } else throw new OutsideOfBoardException();
+    public void updateBoard(int row, int column, String marker) throws PositionOccupiedException {
+        if (getBoard()[row - 1][column - 1].equals(Constants.EMPTY_POSITION)) {
+            getBoard()[row - 1][column - 1] = marker;
+            checkAndAssignWinner(row, column, marker);
+        } else
+            throw new PositionOccupiedException();
+    }
+
+    /**
+     * if the board position entered by player is not in the range of 1 to 3
+     * OutsideOfBoardException will be thrown.
+     */
+    public void validateBoardPosition(int row, int column) {
+        if ((row < 1 || row > 3) || (column < 1 || column > 3)) {
+            throw new OutsideOfBoardException();
+        }
     }
 
     /**
