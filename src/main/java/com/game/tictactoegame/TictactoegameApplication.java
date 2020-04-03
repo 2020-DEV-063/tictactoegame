@@ -11,11 +11,7 @@ public class TictactoegameApplication {
         SpringApplication.run(TictactoegameApplication.class, args);
 
         TicTacToeGame ticTacToeGame = new TicTacToeGame();
-        ticTacToeGame.printBoard();
-        ticTacToeGame.newTurn();
-        ticTacToeGame.printBoard();
-        ticTacToeGame.newTurn();
-        ticTacToeGame.printBoard();
+        ticTacToeGame.newGame();
     }
 
 }
