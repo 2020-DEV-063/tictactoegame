@@ -11,6 +11,8 @@ import static com.game.tictactoegame.util.Constants.*;
  */
 public class TicTacToeGame {
 
+    public final String[][] EMPTY_BOARD = {{" - ", " - ", " - "}, {" - ", " - ", " - "}, {" - ", " - ", " - "}};
+
     private String [][] board = EMPTY_BOARD;
     private StringBuilder boardLayout;
 
@@ -18,6 +20,18 @@ public class TicTacToeGame {
     private Player player2 = new Player(PLAYER2_NAME, PLAYER2_MARKER);
     private int turnCounter = ZERO_TURNS_PLAYED;
     private Player playerAtTurn;
+
+    /**
+     * This method will return true if there is a winner on the given row
+     */
+    public boolean checkWinnerOnRow(int row) {
+        String firstColumn = board[row][0];
+        for (int column = 1; column < board[row].length; column++) {
+            if (!board[row][column].equals(firstColumn))
+                return false;
+        }
+        return true;
+    }
 
     /**
      * This method takes row, column and marker as arguments
