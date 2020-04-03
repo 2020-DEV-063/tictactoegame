@@ -104,4 +104,13 @@ class TicTacToeGameTest {
 
         assertTrue(ticTacToeGame.checkWinnerInColumn(1));
     }
+
+    @Test
+    void testCheckForWinnerOnLeftUnderToRightTopDiagonal() {
+        ticTacToeGame.updateBoard(3, 1, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(2, 2, ticTacToeGame.getPlayer1().getMarker());
+        ticTacToeGame.updateBoard(1, 3, ticTacToeGame.getPlayer1().getMarker());
+
+        assertTrue(ticTacToeGame.checkWinnerOnLeftUnderToRightTopDiagonal(ticTacToeGame.getPlayer1().getMarker()));
+    }
 }
