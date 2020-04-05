@@ -1,7 +1,5 @@
 package com.game.tictactoegame.exceptions;
 
-import com.game.tictactoegame.util.Constants;
-
 import static com.game.tictactoegame.util.Constants.POSITION_OCCUPIED_EXCEPTION_MSG;
 
 /**
