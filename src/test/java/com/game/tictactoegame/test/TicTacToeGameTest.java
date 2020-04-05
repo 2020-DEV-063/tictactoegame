@@ -39,6 +39,9 @@ class TicTacToeGameTest{
         ticTacToeGame = new TicTacToeGame();
     }
 
+    /**
+     * To set up a mock scanner
+     */
     private void setMockScanner(){
         mockScanner = mock(Scanner.class);
         ticTacToeGame.setAskForUserInput(mockScanner);
