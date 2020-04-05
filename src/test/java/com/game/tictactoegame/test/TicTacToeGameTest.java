@@ -31,14 +31,9 @@ class TicTacToeGameTest{
 
     private TicTacToeGame ticTacToeGame;
 
-    @Mock
-    private Scanner mockScanner;
-
     @BeforeEach
     void init(){
         ticTacToeGame = new TicTacToeGame();
-        mockScanner = mock(Scanner.class);
-        ticTacToeGame.setAskForUserInput(mockScanner);
     }
 
     /**
@@ -194,6 +189,10 @@ class TicTacToeGameTest{
      */
     @Test
     void testAskPlayerInput(){
+        Scanner mockScanner;
+        mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
         when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1);
 
         assertEquals(1, ticTacToeGame.askPlayerInput());
@@ -204,6 +203,10 @@ class TicTacToeGameTest{
      */
     @Test
     void testInvalidInput(){
+        Scanner mockScanner;
+        mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
         when(ticTacToeGame.getAskForUserInput().nextInt()).thenThrow(new InputMismatchException()).thenReturn(1);
         assertDoesNotThrow(() -> ticTacToeGame.askPlayerInput());
     }
@@ -214,6 +217,10 @@ class TicTacToeGameTest{
      */
     @Test
     void testNewTurn(){
+        Scanner mockScanner;
+        mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
         when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1).thenReturn(2);
 
         ticTacToeGame.newTurn();
@@ -225,6 +232,10 @@ class TicTacToeGameTest{
      */
     @Test
     void testNewTurnPositionOccupiedException(){
+        Scanner mockScanner;
+        mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
         when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1).thenThrow(PositionOccupiedException.class)
                 .thenReturn(1).thenReturn(1);
 
@@ -236,6 +247,10 @@ class TicTacToeGameTest{
      */
     @Test
     void testNewTurnOutsideOfBoardException(){
+        Scanner mockScanner;
+        mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+
         when(ticTacToeGame.getAskForUserInput().nextInt()).thenThrow(OutsideOfBoardException.class).thenReturn(1);
 
         assertDoesNotThrow(() -> ticTacToeGame.newTurn());
@@ -246,6 +261,10 @@ class TicTacToeGameTest{
      */
     @Test
     void testNewGamePlayer1Wins(){
+        Scanner mockScanner;
+        mockScanner = mock(Scanner.class);
+        ticTacToeGame.setAskForUserInput(mockScanner);
+        
         when(ticTacToeGame.getAskForUserInput().nextInt()).thenReturn(1).thenReturn(1)
                 .thenReturn(1).thenReturn(2)
                 .thenReturn(2).thenReturn(2)
